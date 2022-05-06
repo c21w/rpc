@@ -30,9 +30,9 @@ public class RequestMessage {
     //接口响应的数据塞入这个字段中（如果是异步调用或者void类型，这里就为空）
     private Object response;
 
-    public static RequestMessage createRequestMessage(String requestMethod, String requestServiceName, Object...args){
+    public static RequestMessage createRequestMessage(String requestMethod, Class interfaceClazz, Object...args){
         String uuid = UUID.randomUUID().toString();
         RESP_MAP.put(uuid, new Object());
-        return new RequestMessage(requestMethod,requestServiceName,args,uuid,null);
+        return new RequestMessage(requestMethod, interfaceClazz.getName(), args,uuid,null);
     }
 }

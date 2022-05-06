@@ -8,6 +8,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="core" />
+        <module name="comm" />
+        <module name="provider" />
+        <module name="consumer" />
       </profile>
     </annotationProcessing>
   </component>

@@ -1,13 +1,12 @@
-package registration_center.registry;
+package rpc_core.registration_cent.server;
 
-import java.net.URL;
+import rpc_core.registration_cent.circulate.URL;
 
 public interface RegistryService {
-
     /**
      * 注册url
      *
-     * 将irpc服务写入注册中心节点
+     * 将mrpc服务写入注册中心节点
      * 当出现网络抖动的时候需要进行适当的重试做法
      * 注册服务url的时候需要写入持久化文件中
      *
@@ -25,20 +24,4 @@ public interface RegistryService {
      * @param url
      */
     void unRegister(URL url);
-
-    /**
-     * 消费方订阅服务
-     *
-     * @param url
-     */
-    void subscribe(URL url);
-
-
-    /**
-     * 执行取消订阅内部的逻辑
-     *
-     * @param url
-     */
-    void doUnSubscribe(URL url);
-
 }

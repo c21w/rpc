@@ -1,4 +1,4 @@
-package rpc_core.config;
+package rpc_core.util;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +9,7 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
-public class ClientConfig {
-    private int port;
-    private String serverAddress;
+public class Pair<T,V>{
+    private T key;
+    private V value;
 }

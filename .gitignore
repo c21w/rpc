@@ -1,2 +1,6 @@
 /core/target/
 /core/src/test/
+/provider/src/test/
+/provider/target/
+/consumer/src/test/
+/consumer/target/

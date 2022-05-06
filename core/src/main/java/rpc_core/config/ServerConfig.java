@@ -13,4 +13,7 @@ public class ServerConfig {
 
     private int port;
 
+    private String ip;
+
+    private String applicationName;
 }

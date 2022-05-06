@@ -10,6 +10,7 @@ import rpc_core.protocol.RpcProtocol;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 
 import static rpc_core.config.PoolConfig.PROVIDER_CLASS_MAP;
 
@@ -30,11 +31,11 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
         // 开线程执行，避免阻塞下面的请求
         new Thread(()-> {
             //这里的PROVIDER_CLASS_MAP就是一开始预先在启动时候存储的Bean集合
-//            Object aimObject = PROVIDER_CLASS_MAP.get(requestMessage.getRequestServiceName());
+            Object aimObject = PROVIDER_CLASS_MAP.get(requestMessage.getRequestServiceName());
             String requestServiceName = requestMessage.getRequestServiceName();
-            Object aimObject = null;
+//            Object aimObject = null;
             try {
-                aimObject = Class.forName(requestServiceName).getConstructor().newInstance();
+//                aimObject = Class.forName(requestServiceName).getConstructor().newInstance();
                 Method[] methods = aimObject.getClass().getDeclaredMethods();
                 Object result = null;
                 // 找到合适的方法
@@ -43,9 +44,9 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
                         if (method.getName().equals(requestMessage.getRequestMethod())) {
                             // 通过反射找到目标对象，然后执行目标方法并返回对应值
                             if (method.getReturnType().equals(Void.TYPE)) {
-                                method.invoke(aimObject, (Object)requestMessage.getArgs());
+                                method.invoke(aimObject, requestMessage.getArgs());
                             } else {
-                                result = method.invoke(aimObject, (Object)requestMessage.getArgs());
+                                result = method.invoke(aimObject, requestMessage.getArgs());
                             }
                             break;
                         }
