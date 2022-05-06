@@ -45,6 +45,11 @@ public class ZKClient extends AbstractZookeeperClient{
         new Thread(()->{
             client.getConnectionStateListenable().addListener((client, newState) -> {
                 if (newState == ConnectionState.CONNECTED) {
+                    if(PoolConfig.ONLY_SERVER){
+                        log.info("服务启动成功");
+                        PoolConfig.OPEN_APPLICATION_START = true;
+                        return;
+                    }
                     //获取服务
                     RequestProcessor.loadService();
                     //监听

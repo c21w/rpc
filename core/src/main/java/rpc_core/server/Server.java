@@ -46,7 +46,10 @@ public class Server {
     // 服务列表
     private static Set<String> localServerSet = new HashSet<>();
 
-    public Server(){
+    public Server(boolean bl){
+        //服务器属性
+        ONLY_SERVER = bl;
+
         // 配置服务消息
         initServerConfig();
 
@@ -142,48 +145,5 @@ public class Server {
             bossGroup.shutdownGracefully();
         if(workerGroup != null)
             workerGroup.shutdownGracefully();
-    }
-
-
-    /**
-     * 暴露服务信息
-     *
-//     * @param serviceBean
-     */
-//    public void exportService(Object serviceBean) {
-//        if (serviceBean.getClass().getInterfaces().length == 0) {
-//            throw new RuntimeException("service must had interfaces!");
-//        }
-//        Class[] classes = serviceBean.getClass().getInterfaces();
-//        if (classes.length > 1) {
-//            throw new RuntimeException("service must only had one interfaces!");
-//        }
-//        if (registryService == null) {
-//            registryService = new ZookeeperRegister(serverConfig.getRegisterAddress());
-//        }
-//        //默认选择该对象的第一个实现接口
-//        Class interfaceClass = classes[0];
-//
-//        //把服务放入对象池
-//        PROVIDER_CLASS_MAP.put(interfaceClass.getName(), serviceBean);
-//
-//        URL url = new URL();
-//        url.setServiceName(interfaceClass.getName());
-//        url.setApplicationName(serverConfig.getApplicationName());
-//        url.addParameter("ip", CommonUtils.getIpAddress());   // 获取自身的ip地址
-//        url.addParameter("port", String.valueOf(serverConfig.getServerPort()));
-//        url.setChannelFuture(channelFuture);
-////        PROVIDER_URL_SET.add(url);
-//        // 在zookeeper上注册节点
-//        new Thread(()-> registryService.register(url)).start();
-//    }
-
-
-    public static void main(String[] args) throws InterruptedException {
-        Server server = new Server();
-        server.initServerConfig();  //初始化配置
-//        server.exportService(new DataImpl());   // 暴露服务
-        server.startApplication();  // 开启监听
-
     }
 }

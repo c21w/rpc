@@ -36,6 +36,9 @@ public class PoolConfig {
     // 启动标识
     public static volatile boolean OPEN_APPLICATION_START = false;
 
+    // 是否只做服务器
+    public static volatile boolean ONLY_SERVER = false;
+
 
     //provider名称 --> 该服务有哪些集群URL
     public static List<String> SUBSCRIBE_SERVICE_LIST = new ArrayList<>(); //客户端

@@ -6,7 +6,7 @@ import rpc_core.server.Server;
 public class MRpc {
 
     public static void serverStart(){
-        new Server();
+        new Server(true);
     }
 
     public static void clientStart(){
@@ -14,7 +14,7 @@ public class MRpc {
     }
 
     public static void startServerAndClient(){
-        new Server();
+        new Server(false);
         RequestProcessor.startJob();
     }
 }
